@@ -36,7 +36,7 @@ client.on('message', message => {
     const args = message.content.splice(prfix.length).split(/ +/);
     command = args.shift().toLowerCase();
 
-    if (command === "kick") {
+    if (command === "$kick") {
 
         let modRole = message.guild.roles.find("name", "test");
         if(!message.member.roles.has(modRole.id)) {
