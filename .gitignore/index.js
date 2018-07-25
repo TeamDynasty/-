@@ -36,7 +36,7 @@ client.on('message', message => {
     const args = message.content.splice(prfix.length).split(/ +/);
     command = args.shift().toLowerCase();
 
-    if (command === "$kick") {
+    if (command === "kick") {
 
         let modRole = message.guild.roles.find("name", "test");
         if(!message.member.roles.has(modRole.id)) {
@@ -49,7 +49,7 @@ client.on('message', message => {
         if(!kickMember) {
             return message.reply("This user doesn't exist")
         }
-        if(!message.guild.member(btoa.user).hasPermission("KICK_MEMBERS")) {
+        if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) {
             return message.reply("I don't have the rights to do that").catch(console.error);
         }
         kickMember.kick().then(member => {
