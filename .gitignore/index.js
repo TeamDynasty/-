@@ -32,8 +32,8 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    let command = message.content.splice(" ")[0]
-    const args = message.content.splice(prfix.length).split(/ +/);
+    let command = message.content.split(" ")[0];
+    const args = message.content.slice(prfix.length).split(/ +/);
     command = args.shift().toLowerCase();
 
     if (command === "kick") {
