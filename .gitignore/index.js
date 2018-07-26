@@ -4,6 +4,7 @@ const fs = require('fs');
 const moment = require('moment');
 
 let userData = JSON.parse(fs.readFileSync('Storage/userData.json', 'utf8'));
+bot.login('NDcxMDg3OTQ1OTM2NTM1NTgz.DjvUFg.d1JJXWnfrB1wq6frWGkYepeYJIc');
 
 bot.on("ready", () => {
     console.log("I'm online")
@@ -236,4 +237,4 @@ fs.writeFile('Storage/userData.json', JSON.stringify(userData), (err) => {
   }
 
 });
-bot.login('NDcxMDg3OTQ1OTM2NTM1NTgz.DjvUFg.d1JJXWnfrB1wq6frWGkYepeYJIc');
+
