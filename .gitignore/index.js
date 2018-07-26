@@ -1,21 +1,17 @@
 const Discord = require('discord.js');
-
-const client = new Discord.Client();
-
-var prfix = "$";
+var bot = new Discord.Client();
+var prefix = "$";
 
 
-client.login("NDcxMDg3OTQ1OTM2NTM1NTgz.Djf5Gw.4nI-UObMYFGbndfCaO-2WCjq_hU");
-
-client.on("ready", () => {
+bot.on("ready", () => {
     console.log("I'm online")
     client.user.setGame("$help");
 });
 
-client.on('message', message => {
-  
-    
-    if(message.content === prfix + "help"){
+bot.login("NDcxMDg3OTQ1OTM2NTM1NTgz.Djf5Gw.4nI-UObMYFGbndfCaO-2WCjq_hU");
+
+bot.on('message', message => {
+    if(message.content === prefix + "help"){
         var help_embed = new Discord.RichEmbed()
         .setColor("#FF0000")
         .setTitle("Commands list : ")
@@ -28,34 +24,31 @@ client.on('message', message => {
     }
 
 
-
-
-
-client.on('message', message => {
-    let command = message.content.split(" ")[0];
-    const args = message.content.slice(prfix.length).split(/ +/);
-    command = args.shift().toLowerCase();
-
-    if (command === "kick") {
-
-        let modRole = message.guild.roles.find("name", "test");
-        if(!message.member.roles.has(modRole.id)) {
-            return message.reply("You don't have the rights to do that").catch(console.error);
+    switch (args[0],toLowerCase()){
+        case "kick":
+        
+        if (!message.channel.permissionsFor(message.member).hasPermission("KICK_MEMBERS")){
+            message.reply("You don't have the rights")
+        }else{
+            var memberkick = message.mentions.members.firsts();
+            console.log(memberkick)
+            console.log(message.guild.member(memberkick).kickable)
+            if(!memberkick){
+                message.reply("User doesn't exist");
+            }else{
+                if(!message.guild.member(memberkick).kickable){
+                    message.reply("You can't ban this user");
+                }else{
+                    message.guild.member(memberkick).kick().then((member) => {
+                    message.channel.send(`${member.displayName} has been kicked`);
+                }).catch(() => {
+                    message.channel.send("Kick refused")
+                })
+            }
         }
-        if(message.mentions.users.size === 0) {
-            return message.reply("Choose a member to kick").catch(console.error);
-        }
-        let kickMember = message.guild.member(message.mentions.users.first());
-        if(!kickMember) {
-            return message.reply("This user doesn't exist")
-        }
-        if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) {
-            return message.reply("I don't have the rights to do that").catch(console.error);
-        }
-        kickMember.kick().then(member => {
-            message.reply(`${member.user.username} has been kicked`).catch(console.error);
-            message.guild.channel.find("name", "General").send(`**${member.user.username} has been kicked by **${message.author.username}**`)
-        }).catch(console.error)
-    }})
+    }
+        break;
 
+    }
 });
+
