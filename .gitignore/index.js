@@ -3,12 +3,14 @@ var bot = new Discord.Client();
 var prefix = "$";
 
 
+
+bot.login("NDcxMDg3OTQ1OTM2NTM1NTgz.Djf5Gw.4nI-UObMYFGbndfCaO-2WCjq_hU");
+
 bot.on("ready", () => {
     console.log("I'm online")
     client.user.setGame("$help");
 });
 
-bot.login("NDcxMDg3OTQ1OTM2NTM1NTgz.Djf5Gw.4nI-UObMYFGbndfCaO-2WCjq_hU");
 
 bot.on('message', message => {
     if(message.content === prefix + "help"){
