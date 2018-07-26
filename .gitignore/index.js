@@ -236,4 +236,4 @@ fs.writeFile('Storage/userData.json', JSON.stringify(userData), (err) => {
   }
 
 });
-bot.login('NDcxMDg3OTQ1OTM2NTM1NTgz.Djf5Gw.4nI-UObMYFGbndfCaO-2WCjq_hU');
+bot.login('NDcxMDg3OTQ1OTM2NTM1NTgz.DjvUFg.d1JJXWnfrB1wq6frWGkYepeYJIc');
